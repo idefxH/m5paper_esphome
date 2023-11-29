@@ -316,7 +316,7 @@ void IT8951ESensor::write_display() {
 void IT8951ESensor::clear(bool init) {
     ESP_LOGE(TAG, "clear stage1");
     this->enable();
-    this->begin();
+   
     ESP_LOGE(TAG, "clear stage2");
     this->set_target_memory_addr(this->device_info_->usImgBufAddrL | (this->device_info_->usImgBufAddrH << 16));
     ESP_LOGE(TAG, "clear stage3");
