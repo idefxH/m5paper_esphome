@@ -313,25 +313,29 @@ void IT8951ESensor::write_display() {
  * @retval m5epd_err_t
  */
 void IT8951ESensor::clear(bool init) {
+    ESP_LOGE(TAG, "clear stage1");
     this->enable();
-
+    ESP_LOGE(TAG, "clear stage2");
     this->set_target_memory_addr(this->device_info_->usImgBufAddrL | (this->device_info_->usImgBufAddrH << 16));
-    this->set_area(0, 0, this->get_width_internal(), this->get_height_internal());    
+    ESP_LOGE(TAG, "clear stage3");
+    this->set_area(0, 0, this->get_width_internal(), this->get_height_internal());
+    ESP_LOGE(TAG, "clear stage4");
     uint32_t looping = (this->get_width_internal() * this->get_height_internal()) >> 2;
-
+    ESP_LOGE(TAG, "clear stage5");
     for (uint32_t x = 0; x < looping; x++) {
         this->enable_cs();
         this->write_byte32(0x0000FFFF);
         this->disable_cs();
     }
-
+    ESP_LOGE(TAG, "clear stage6");
     this->write_command(IT8951_TCON_LD_IMG_END);
-
+    ESP_LOGE(TAG, "clear stage7");
     this->disable();
-
+    ESP_LOGE(TAG, "clear stage8");
     if (init) {
         this->update_area(0, 0, this->get_width_internal(), this->get_height_internal(), UPDATE_MODE_INIT);
     }
+    ESP_LOGE(TAG, "clear stage8");
 }
 
 void IT8951ESensor::update() {
