@@ -270,6 +270,7 @@ void IT8951ESensor::write_buffer_to_display(uint16_t x, uint16_t y, uint16_t w,
     }
 
     this->enable();
+    this->dump_config();
     this->set_target_memory_addr(this->device_info_->usImgBufAddrL | (this->device_info_->usImgBufAddrH << 16));
     this->set_area(x, y, w, h);
 
