@@ -33,6 +33,7 @@ void M5PaperComponent::setup() {
     adc1_config_channel_atten(ADC1_GPIO35_CHANNEL, ADC_ATTEN_DB_11);
     this->_adc_chars = (esp_adc_cal_characteristics_t *)calloc(1, sizeof(esp_adc_cal_characteristics_t));
     esp_adc_cal_characterize(ADC_UNIT_1, ADC_ATTEN_DB_11, ADC_WIDTH_BIT_12, BASE_VOLATAGE, this->_adc_chars);
+
 }
 
 void M5PaperComponent::shutdown_main_power() {
