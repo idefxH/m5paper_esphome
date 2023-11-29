@@ -164,7 +164,9 @@ void IT8951ESensor::read_words(void *buf, uint32_t length) {
     // uint16_t dummy;
     this->wait_busy();
     this->enable_cs();
+    ESP_LOGE(TAG, "about to write byte16");
     this->write_byte16(0x1000);
+    ESP_LOGE(TAG, "byte16 wrote");
     this->wait_busy();
 
     // dummy
@@ -210,11 +212,13 @@ void IT8951ESensor::setup() {
 
     this->busy_pin_->pin_mode(gpio::FLAG_INPUT);
     this->reset_pin_->pin_mode(gpio::FLAG_OUTPUT);
-
+    ESP_LOGE(TAG, "Pin set-up");
     this->reset();
+    ESP_LOGE(TAG, "Reset done");
     this->disable_cs();
+    ESP_LOGE(TAG, "CS disable");
     this->enable();
-
+    ESP_LOGE(TAG, "enable");
     ExternalRAMAllocator<IT8951DevInfo> allocator(ExternalRAMAllocator<IT8951DevInfo>::ALLOW_FAILURE);
     this->device_info_ = allocator.allocate(1);
     if (this->device_info_ == nullptr) {
@@ -365,6 +369,7 @@ void HOT IT8951ESensor::draw_absolute_pixel_internal(int x, int y, Color color) 
 }
 
 int IT8951ESensor::get_width_internal() {
+    ESP_LOGE(TAG, "get_width_internal");
     if (this->device_info_ == nullptr) {
         return M5EPD_PANEL_W; // workaround for touchscreen calling this reallly early
     }
@@ -372,6 +377,7 @@ int IT8951ESensor::get_width_internal() {
 }
 
 int IT8951ESensor::get_height_internal() {
+    ESP_LOGE(TAG, "get_height_internal");
     if (this->device_info_ == nullptr) {
         return M5EPD_PANEL_H; // workaround for touchscreen calling this reallly early
     }
