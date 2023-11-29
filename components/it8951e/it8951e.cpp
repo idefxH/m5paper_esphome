@@ -219,6 +219,8 @@ void IT8951ESensor::setup() {
     ESP_LOGE(TAG, "CS disable");
     this->enable();
     ESP_LOGE(TAG, "enable");
+    this->usPanelH = M5EPD_PANEL_H;
+    this->usPanelW = M5EPD_PANEL_W;
     ExternalRAMAllocator<IT8951DevInfo> allocator(ExternalRAMAllocator<IT8951DevInfo>::ALLOW_FAILURE);
     this->device_info_ = allocator.allocate(1);
     if (this->device_info_ == nullptr) {
@@ -373,7 +375,7 @@ int IT8951ESensor::get_width_internal() {
     //if (this->device_info_ == nullptr) {
         return M5EPD_PANEL_W; // workaround for touchscreen calling this reallly early
     //}
-    return this->device_info_->usPanelW;
+    //return this->device_info_->usPanelW;
 }
 
 int IT8951ESensor::get_height_internal() {
@@ -381,7 +383,7 @@ int IT8951ESensor::get_height_internal() {
     //if (this->device_info_ == nullptr) {
         return M5EPD_PANEL_H; // workaround for touchscreen calling this reallly early
     //}
-    return this->device_info_->usPanelH;
+    //return this->device_info_->usPanelH;
 }
 
 void IT8951ESensor::dump_config(){
