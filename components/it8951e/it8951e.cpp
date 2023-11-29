@@ -187,7 +187,7 @@ void IT8951ESensor::read_words(void *buf, uint32_t length) {
     }
 
     memcpy(buf, buffer, length);
-
+    
     allocator.deallocate(buffer, length);
 
     this->disable_cs();
@@ -219,8 +219,8 @@ void IT8951ESensor::setup() {
     ESP_LOGE(TAG, "CS disable");
     this->enable();
     ESP_LOGE(TAG, "enable");
-    info->usPanelH = M5EPD_PANEL_H;
-    info->usPanelW = M5EPD_PANEL_W;
+    // info->usPanelH = M5EPD_PANEL_H;
+    // info->usPanelW = M5EPD_PANEL_W;
     ExternalRAMAllocator<IT8951DevInfo> allocator(ExternalRAMAllocator<IT8951DevInfo>::ALLOW_FAILURE);
     this->device_info_ = allocator.allocate(1);
     if (this->device_info_ == nullptr) {
