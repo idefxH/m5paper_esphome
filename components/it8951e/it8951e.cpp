@@ -219,8 +219,8 @@ void IT8951ESensor::setup() {
     ESP_LOGE(TAG, "CS disable");
     this->enable();
     ESP_LOGE(TAG, "enable");
-    this->usPanelH = M5EPD_PANEL_H;
-    this->usPanelW = M5EPD_PANEL_W;
+    info->usPanelH = M5EPD_PANEL_H;
+    info->usPanelW = M5EPD_PANEL_W;
     ExternalRAMAllocator<IT8951DevInfo> allocator(ExternalRAMAllocator<IT8951DevInfo>::ALLOW_FAILURE);
     this->device_info_ = allocator.allocate(1);
     if (this->device_info_ == nullptr) {
