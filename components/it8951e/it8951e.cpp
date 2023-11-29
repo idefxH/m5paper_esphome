@@ -370,17 +370,17 @@ void HOT IT8951ESensor::draw_absolute_pixel_internal(int x, int y, Color color) 
 
 int IT8951ESensor::get_width_internal() {
     ESP_LOGE(TAG, "get_width_internal");
-    if (this->device_info_ == nullptr) {
+    //if (this->device_info_ == nullptr) {
         return M5EPD_PANEL_W; // workaround for touchscreen calling this reallly early
-    }
+    //}
     return this->device_info_->usPanelW;
 }
 
 int IT8951ESensor::get_height_internal() {
     ESP_LOGE(TAG, "get_height_internal");
-    if (this->device_info_ == nullptr) {
+    //if (this->device_info_ == nullptr) {
         return M5EPD_PANEL_H; // workaround for touchscreen calling this reallly early
-    }
+    //}
     return this->device_info_->usPanelH;
 }
 
