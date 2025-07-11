@@ -35,6 +35,7 @@ void M5PaperComponent::setup() {
     esp_adc_cal_characterize(ADC_UNIT_1, ADC_ATTEN_DB_11, ADC_WIDTH_BIT_12, BASE_VOLATAGE, this->_adc_chars);
 
 }
+ESPHome_REGISTER_ACTION("m5paper.shutdown_main_power", m5paper::PowerAction<>);
 
 void M5PaperComponent::shutdown_main_power() {
     ESP_LOGE(TAG, "Shutting Down Power");
